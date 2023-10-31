@@ -49,4 +49,8 @@ def login(request):
             return HttpResponse('Usuário ou Senha Inválidos')
 
 
+def detail(request):
+    return render(request, "detail.html")
+
+
 
