@@ -141,8 +141,13 @@
                             <a href="" class="nav-item nav-link"></a>
                         </div>
                         <div class="navbar-nav ml-auto py-0">
-                            <a href="{% url 'login' %}" class="nav-item nav-link">Login</a>
-                            <a href="{% url 'cadastro' %}" class="nav-item nav-link">Cadastro</a>
+                            {% if user.is_autenticated %}
+                                <a href="" class="nav-item nav-link">{{ user.get_username }}</a>
+
+                            {% else %}
+                                <a href="{% url 'login' %}" class="nav-item nav-link">Login</a>
+                                <a href="{% url 'cadastro' %}" class="nav-item nav-link">Cadastro</a>
+                            {% endif %}
                         </div>
                     </div>
                 </nav>

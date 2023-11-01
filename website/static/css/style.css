@@ -3976,7 +3976,15 @@ input[type="button"].btn-block {
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
   color: #fff;
-  background-color: #EEE29F;
+  background-color: #D68C5B;
+}
+
+a.nav-item.nav-link {
+  color: #4A4529;
+}
+
+a.nav-item.nav-link.active {
+  color: #D68C5B;
 }
 
 .nav-fill > .nav-link,
@@ -4060,6 +4068,7 @@ input[type="button"].btn-block {
   flex-grow: 1;
   align-items: center;
 }
+
 
 .navbar-toggler {
   padding: 0.25rem 0.75rem;
@@ -9370,6 +9379,10 @@ a.text-dark:hover, a.text-dark:focus {
 
 .invisible {
   visibility: hidden !important;
+}
+
+.bi {
+  color: red
 }
 
 @media print {
