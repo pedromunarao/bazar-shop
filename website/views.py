@@ -3,7 +3,10 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as login_django
+from .models import Produto
+from .forms import ProdutoForm
 from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 def index(request):
@@ -11,7 +14,8 @@ def index(request):
 
 
 def shop(request):
-    return render(request, "shop.html")
+    produtos = Produto.objects.all()
+    return render(request, "shop.html", {'produtos': produtos})
 
 
 def cadastro(request):
@@ -51,6 +55,31 @@ def login(request):
 
 def detail(request):
     return render(request, "detail.html")
+
+
+def cadastrar_produto(request):
+    if request.method == 'POST':
+        # Obtenha os dados do formulário
+        nome = request.POST.get('nome', '')
+        descricao = request.POST.get('descricao', '')
+        preco = request.POST.get('preco', '')
+
+        # Verifique se a chave 'imagem' existe no dicionário request.FILES
+
+        imagem = request.FILES.get('imagem')
+
+        # Crie um novo objeto de Produto com os dados do formulário
+        novo_produto = Produto(titulo=nome, descricao=descricao, preco=preco, thumb=imagem)
+
+        # Salve o objeto no banco de dados
+        novo_produto.save()
+
+        # Redirecione o usuário para uma página de sucesso ou outra página desejada
+        # Neste exemplo, vamos redirecioná-lo de volta para a página de cadastro de produtos
+        return render(request, 'cadastro_prod.html')
+
+        # Se a requisição não for POST, apenas renderize o formulário de cadastro de produtos
+    return render(request, 'cadastro_prod.html')
 
 
 

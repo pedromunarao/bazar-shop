@@ -1,7 +1,7 @@
 from django.db import models
 from django.db.models import Model
 from django.utils import timezone
-
+from django import forms
 # Create your models here.
 
 LISTA_CATEGORIAS = (
@@ -45,6 +45,7 @@ class Produto(models.Model):
 
     def __str__(self):
         return self.titulo
+
 
 
 
