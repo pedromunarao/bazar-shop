@@ -1,11 +1,12 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, logout
 from django.contrib.auth import login as login_django
 from .models import Produto
 from .forms import ProdutoForm
 from django.contrib.auth.decorators import login_required
+
 
 
 # Create your views here.
@@ -53,8 +54,9 @@ def login(request):
             return HttpResponse('Usuário ou Senha Inválidos')
 
 
-def detail(request):
-    return render(request, "detail.html")
+def detail(request, pk):
+    detalhes = get_object_or_404(Produto, pk=pk)
+    return render(request, 'detail.html', {'produto': detalhes})
 
 
 def cadastrar_produto(request):
@@ -80,6 +82,19 @@ def cadastrar_produto(request):
 
         # Se a requisição não for POST, apenas renderize o formulário de cadastro de produtos
     return render(request, 'cadastro_prod.html')
+
+
+@login_required
+def sair(request):
+    logout(request)
+    return redirect('index')
+
+
+def compra(request, pk):
+    compras = get_object_or_404(Produto, pk=pk)
+    return render(request, 'checkout.html', {'produto': compras})
+
+
 
 
 

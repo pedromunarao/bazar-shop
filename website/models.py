@@ -34,6 +34,7 @@ LISTA_SUBCATEGORIAS = (
 )
 '''
 
+
 class Produto(models.Model):
     titulo = models.CharField(max_length=100)
     thumb = models.ImageField(upload_to='img_produto')
@@ -42,6 +43,7 @@ class Produto(models.Model):
     # subcategoria = models.CharField(max_length=100, choices=LISTA_SUBCATEGORIAS)
     data_criacao = models.DateTimeField(default=timezone.now)
     preco = models.DecimalField(max_digits=5, decimal_places=2)
+
 
     def __str__(self):
         return self.titulo
