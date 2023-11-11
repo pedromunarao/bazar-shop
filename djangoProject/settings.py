@@ -40,8 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'djangoProject',
     'website',
-    'bootstrap4'
+    'bootstrap4',
+    'tailwind',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

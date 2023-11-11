@@ -5,6 +5,74 @@
  * Copyright 2011-2020 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 600px;
+  margin: 50px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  color: #007bff;
+}
+
+form {
+  margin-top: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+input[type="text"],
+input[type="file"],
+textarea,
+select,
+input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+select {
+  appearance: none;
+  background: url('https://cdn2.iconfinder.com/data/icons/feather/24/chevron-down-512.png') no-repeat right #fff;
+  background-size: 20px;
+  padding-right: 30px;
+}
+
+input[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Add more styles as needed */
+
+
+
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -20,7 +88,7 @@
   --gray: #6c757d;
   --gray-dark: #343a40;
   --primary: #EEE29F;
-  --secondary: #EDF1FF;
+  --secondary: #1E1E1E;
   --success: #28a745;
   --info: #17a2b8;
   --warning: #ffc107;
@@ -2402,7 +2470,7 @@ fieldset:disabled a.btn {
 
 .btn-secondary {
   color: #212529;
-  background-color: #EDF1FF;
+  background-color: #1E1E1E;
   border-color: #EDF1FF;
 }
 
@@ -6113,7 +6181,7 @@ button.bg-primary:focus {
 }
 
 .bg-secondary {
-  background-color: #EDF1FF !important;
+  background-color: #1E1E1E !important;
 }
 
 a.bg-secondary:hover, a.bg-secondary:focus,

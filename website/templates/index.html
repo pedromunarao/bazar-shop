@@ -34,44 +34,11 @@
 
 <body>
 {% csrf_token %}
-<!-- Topbar Start
-<div class="container-fluid">
-    <div class="row bg-secondary py-2 px-xl-5">
-        <div class="col-lg-6 d-none d-lg-block">
-            <div class="d-inline-flex align-items-center">
-                <a class="text-dark" href="">FAQs</a>
-                <span class="text-muted px-2">|</span>
-                <a class="text-dark" href="">Ajuda</a>
-                <span class="text-muted px-2">|</span>
-                <a class="text-dark" href="">Support</a>
-            </div>
-        </div>
-        <div class="col-lg-6 text-center text-lg-right">
-            <div class="d-inline-flex align-items-center">
-                <a class="text-dark px-2" href="">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a class="text-dark px-2" href="">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a class="text-dark px-2" href="">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a class="text-dark px-2" href="">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a class="text-dark pl-2" href="">
-                    <i class="fab fa-youtube"></i>
-                </a>
-            </div>
-        </div>
-    </div> -->
 
 <div class="row align-items-center py-3 px-xl-5">
     <div class="col-lg-3 d-none d-lg-block">
-        <a href="" class="text-decoration-none">
-            <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold"><img
-                    src="{% static 'img/logo2.png' %}" height="70px"></span></h1>
+        <a href="{% url 'index' %}" class="text-decoration-none">
+            <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold"><img src="{% static 'img/logo2.png' %}" height="70px"></span></h1>
         </a>
     </div>
     <div class="col-lg-6 col-6 text-left">
@@ -90,7 +57,7 @@
         <a href="" class="btn border">
             {% csrf_token %}
             {% if user.is_authenticated %}
-                <a href='deslogar/' class="nav-item nav-link">
+                <a href='logout.html' class="nav-item nav-link">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                          class="bi   bi-person" viewBox="0 0 16 16">
                         <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
@@ -668,13 +635,9 @@ Vendor End -->
 
 
 <!-- Footer Start -->
-<div class="container-fluid bg-secondary text-dark mt-5 pt-5">
+<div class="container-fluid bg-secondary text-white mt-5 pt-5">
     <div class="row px-xl-5 pt-5">
-        <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
-            <a href="" class="text-decoration-none">
-                <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold"><img
-                        src="{% static '/img/logo2.png' %}" height="70px"></span></h1>
-            </a>
+            <h1 class="text-white">Sobre Nós</h1>
             <p>Na Fashionize, estamos empenhados em tornar sua experiência de compras online incrivelmente emocionante,
                 fácil e totalmente personalizada. Somos uma empresa de bazar com uma ampla gama de produtos
                 cuidadosamente selecionados para atender a todas as suas necessidades, desde moda até itens para o lar,
@@ -687,12 +650,11 @@ Vendor End -->
         <div class="col-lg-8 col-md-12">
             <div class="row">
                 <div class="col-md-4 mb-5">
-                    <h5 class="font-weight-bold text-dark mb-4">Links</h5>
-                    <div class="d-flex flex-column justify-content-start">
-                        <a class="text-dark mb-2" href="index.html"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                        <a class="text-dark mb-2" href="shop.html"><i class="fa fa-angle-right mr-2"></i>Produtos</a>
-                        <a class="text-dark" href="contact.html"><i class="fa fa-angle-right mr-2"></i>Contatos</a>
-                    </div>
+                    <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
+                        <a href="" class="text-decoration-none">
+                            <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold"><img
+                                    src="{% static '/img/logo_footer.png' %}" height="70px"></span></h1>
+                        </a>
                 </div>
             </div>
         </div>

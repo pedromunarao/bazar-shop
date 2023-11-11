@@ -25,11 +25,15 @@
     <!-- Customized Bootstrap Stylesheet -->
 
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/vendor/sweetalert2/dist/sweetalert2.min.css">
+    <script src="assets/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
+
 </head>
     <body>
         <div class="row align-items-center py-3 px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
-                <a href="" class="text-decoration-none">
+                <a href="{% url 'index' %}" class="text-decoration-none">
                     <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold"><img src="{% static 'img/logo2.png' %}" height="70px"></span></h1>
                 </a>
             </div>
@@ -43,7 +47,6 @@
                 </form>
             </div>
         </div>
-
     <div class="container">
         <form action="{% url 'login' %}" method="POST">{% csrf_token %}
             <div class="form-group">
@@ -57,7 +60,6 @@
               <button type="submit" class="btn btn-primary">Logar</button>
         </form>
     </div>
-
 
 
 

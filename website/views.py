@@ -6,7 +6,8 @@ from django.contrib.auth import login as login_django
 from .models import Produto
 from .forms import ProdutoForm
 from django.contrib.auth.decorators import login_required
-
+from django.utils import timezone
+from django.contrib import messages
 
 
 # Create your views here.
@@ -30,12 +31,14 @@ def cadastro(request):
         user = User.objects.filter(username=username).first()
 
         if user:
-            return HttpResponse('Usuário já existente')
+            messages.success(request, "Usuário já existente")
+            return render(request, 'login.html')
 
         user = User.objects.create_user(username=username, email=email, password=senha)
         user.save()
+        messages.success(request, "Usuário cadastrado com Sucesso")
 
-        return HttpResponse('Usuário Cadastrado com Sucesso')
+        return render(request, 'login.html')
 
 
 def login(request):
@@ -51,7 +54,8 @@ def login(request):
             login_django(request, user)
             return render(request, "index.html")
         else:
-            return HttpResponse('Usuário ou Senha Inválidos')
+            messages.success(request, "Usuário ou senha inválidos")
+            return render(request, 'login.html')
 
 
 def detail(request, pk):
@@ -59,29 +63,20 @@ def detail(request, pk):
     return render(request, 'detail.html', {'produto': detalhes})
 
 
+
+
 def cadastrar_produto(request):
     if request.method == 'POST':
-        # Obtenha os dados do formulário
-        nome = request.POST.get('nome', '')
-        descricao = request.POST.get('descricao', '')
-        preco = request.POST.get('preco', '')
+        form = ProdutoForm(request.POST, request.FILES)
+        if form.is_valid():
+            produto = form.save(commit=False)
+            produto.data_criacao = timezone.now()
+            produto.save()
+            return redirect('cadastro_prod')  # Substitua 'pagina_sucesso' pela sua página de sucesso
+    else:
+        form = ProdutoForm()
 
-        # Verifique se a chave 'imagem' existe no dicionário request.FILES
-
-        imagem = request.FILES.get('imagem')
-
-        # Crie um novo objeto de Produto com os dados do formulário
-        novo_produto = Produto(titulo=nome, descricao=descricao, preco=preco, thumb=imagem)
-
-        # Salve o objeto no banco de dados
-        novo_produto.save()
-
-        # Redirecione o usuário para uma página de sucesso ou outra página desejada
-        # Neste exemplo, vamos redirecioná-lo de volta para a página de cadastro de produtos
-        return render(request, 'cadastro_prod.html')
-
-        # Se a requisição não for POST, apenas renderize o formulário de cadastro de produtos
-    return render(request, 'cadastro_prod.html')
+    return render(request, 'cadastro_prod.html', {'form': form})
 
 
 @login_required
