@@ -47,6 +47,7 @@
                 </form>
             </div>
         </div>
+        {% include 'messages.html' %}
     <div class="container">
         <form action="{% url 'login' %}" method="POST">{% csrf_token %}
             <div class="form-group">

@@ -31,7 +31,7 @@ def cadastro(request):
         user = User.objects.filter(username=username).first()
 
         if user:
-            messages.success(request, "Usuário já existente")
+            messages.warning(request, "Usuário já existente")
             return render(request, 'login.html')
 
         user = User.objects.create_user(username=username, email=email, password=senha)
@@ -52,10 +52,11 @@ def login(request):
 
         if user:
             login_django(request, user)
-            return render(request, "index.html")
+            messages.success(request, "Logado com sucesso")
+            return HttpResponseRedirect('/')
         else:
-            messages.success(request, "Usuário ou senha inválidos")
-            return render(request, 'login.html')
+            messages.error(request, "Usuário ou senha inválidos")
+            return HttpResponseRedirect('/login')
 
 
 def detail(request, pk):
@@ -82,7 +83,8 @@ def cadastrar_produto(request):
 @login_required
 def sair(request):
     logout(request)
-    return redirect('index')
+    messages.warning(request, "Usuário deslogado")
+    return HttpResponseRedirect('/')
 
 
 def compra(request, pk):
