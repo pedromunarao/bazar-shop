@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, logout
 from django.contrib.auth import login as login_django
 from .models import Produto
-from .forms import ProdutoForm
+from .forms import ProdutoForm, ProdutoSearchForm
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from django.contrib import messages
@@ -73,7 +73,8 @@ def cadastrar_produto(request):
             produto = form.save(commit=False)
             produto.data_criacao = timezone.now()
             produto.save()
-            return redirect('cadastro_prod')  # Substitua 'pagina_sucesso' pela sua página de sucesso
+            messages.success(request, "Produto cadastrado com sucesso")
+            return redirect('shop')
     else:
         form = ProdutoForm()
 
@@ -90,6 +91,21 @@ def sair(request):
 def compra(request, pk):
     compras = get_object_or_404(Produto, pk=pk)
     return render(request, 'checkout.html', {'produto': compras})
+
+
+def pesquisa_produto(request):
+    if request.method == 'GET':
+        form = ProdutoSearchForm(request.GET)
+        if form.is_valid():
+            termo_pesquisa = form.cleaned_data['termo_pesquisa']
+            produtos = Produto.objects.filter(nome__icontains=termo_pesquisa)
+        else:
+            produtos = Produto.objects.all()
+    else:
+        form = ProdutoSearchForm()
+        produtos = Produto.objects.all()
+
+    return render(request, 'sua_app/pesquisa_produto.html', {'form': form, 'produtos': produtos})
 
 
 
