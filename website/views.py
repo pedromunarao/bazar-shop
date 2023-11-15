@@ -65,7 +65,7 @@ def detail(request, pk):
 
 
 
-
+@login_required
 def cadastrar_produto(request):
     if request.method == 'POST':
         form = ProdutoForm(request.POST, request.FILES)
