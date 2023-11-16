@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, logout
 from django.contrib.auth import login as login_django
-from .models import Produto, Categoria
+from .models import Produto, Categoria, Compra
 from .forms import ProdutoForm, ProdutoSearchForm
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
@@ -119,4 +119,16 @@ def produtos_por_categoria(request, categoria_id):
 
     return render(request, 'categorias.html', context)
 
+
+@login_required
+def compra(request, pk):
+    produto = get_object_or_404(Produto, pk=pk)
+
+    if request.method == 'POST':
+        # Criar uma nova compra associada ao usuário logado e ao produto selecionado
+        Compra.objects.create(usuario=request.user, produto=produto)
+        messages.success(request, "Compra realizada com sucesso!")
+        return redirect('shop')
+
+    return render(request, 'checkout.html', {'produto': produto})
 
