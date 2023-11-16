@@ -27,22 +27,7 @@
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
 </head>
     <body>
-        <div class="row align-items-center py-3 px-xl-5">
-            <div class="col-lg-3 d-none d-lg-block">
-                <a href="{% url 'index' %}" class="text-decoration-none">
-                    <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold"><img src="{% static 'img/logo2.png' %}" height="70px"></span></h1>
-                </a>
-            </div>
-            <div class="col-lg-6 col-6 text-center">
-                <form action="">
-                    <div class="input-group">
-                        <h1>Cadastro</h1>
-                        <div class="input-group-append">
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
+        {% include 'commom/topbar.html' %}
 
         {% include 'commom/messages.html' %}
 
@@ -68,6 +53,20 @@
 
 
 
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="../static/lib/easing/easing.min.js"></script>
+<script src="../static/lib/owlcarousel/owl.carousel.min.js"></script>
+
+<!-- Contact Javascript File -->
+<script src="../static/mail/jqBootstrapValidation.min.js"></script>
+<script src="../static/mail/contact.js"></script>
+
+<!-- Template Javascript -->
+<script src="{% static 'js/main.js' %}"></script>
+<script>
+    var DJANGO_USER = "{{user.is_authenticated|yesno:"true,false"}};
+</script>
 
     </body>
 

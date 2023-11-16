@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, logout
 from django.contrib.auth import login as login_django
-from .models import Produto
+from .models import Produto, Categoria
 from .forms import ProdutoForm, ProdutoSearchForm
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
@@ -108,6 +108,15 @@ def pesquisa_produto(request):
     return render(request, 'sua_app/pesquisa_produto.html', {'form': form, 'produtos': produtos})
 
 
+def produtos_por_categoria(request, categoria_id):
+    categoria = get_object_or_404(Categoria, pk=categoria_id)
+    produtos = Produto.objects.filter(categoria=categoria)
 
+    context = {
+        'categoria': categoria,
+        'produtos': produtos,
+    }
+
+    return render(request, 'categorias.html', context)
 
 

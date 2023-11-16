@@ -31,23 +31,12 @@
 
 </head>
     <body>
-        <div class="row align-items-center py-3 px-xl-5">
-            <div class="col-lg-3 d-none d-lg-block">
-                <a href="{% url 'index' %}" class="text-decoration-none">
-                    <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold"><img src="{% static 'img/logo2.png' %}" height="70px"></span></h1>
-                </a>
-            </div>
-            <div class="col-lg-6 col-6 text-center">
-                <form action="">
-                    <div class="input-group">
-                        <h1>Login</h1>
-                        <div class="input-group-append">
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        {% include 'commom/messages.html' %}
+        {% csrf_token %}
+{% include 'commom/messages.html' %}
+
+<!-- Top bar -->
+{% include 'commom/topbar.html' %}
+<!-- Top bar End -->
     <div class="container">
         <form action="{% url 'login' %}" method="POST">{% csrf_token %}
             <div class="form-group">
