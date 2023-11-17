@@ -15,6 +15,7 @@ class Categoria(models.Model):
 
 
 class Produto(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     titulo = models.CharField(max_length=100)
     thumb = models.ImageField(upload_to='img_produto')
     descricao = models.TextField(max_length=1000)
@@ -38,7 +39,7 @@ class Compra(models.Model):
         return f"{self.usuario.username} comprou {self.produto.titulo} em {self.data_compra}"
 
     def get_absolute_url(self):
-        return f'/checkout/{self.id}/'
+        return f'/confirmar_compra/{self.id}/'
 
 
 

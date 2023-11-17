@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+{% load static %}
+
+<head>
+    <meta charset="utf-8">
+    <title>Fashionize</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="{% static 'img/icon.ico' %}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+    <link rel=”stylesheet” href=”https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css”/>
+
+    <link rel=”stylesheet” href=”https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css”/>
+
+
+    <!-- Customized Bootstrap Stylesheet -->
+
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+<body>
+{% include 'commom/topbar.html' %}
+<!-- Navbar Start -->
+<div class="container-fluid mb-5">
+    <div class="row border-top px-xl-5">
+        <div class="col-lg-3 d-none d-lg-block">
+            <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100"
+               data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px;">
+                <h6 class="m-0">Categorias</h6>
+                <i class="fa fa-angle-down text-dark"></i>
+            </a>
+            <nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0"
+                 id="navbar-vertical">
+                <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
+                    <a href="categoria/1" class="nav-item nav-link">Partes Superiores</a>
+                    <a href="categoria/2" class="nav-item nav-link">Partes Inferiores</a>
+                    <a href="categoria/4" class="nav-item nav-link">Peça Única</a>
+                    <a href="categoria/5" class="nav-item nav-link">Terceira Peça</a>
+                    <a href="categoria/6" class="nav-item nav-link">Acessórios</a>
+                    <a href="categoria/7" class="nav-item nav-link">Calçados</a>
+                    <a href="categoria/8" class="nav-item nav-link">Outros</a>
+                </div>
+            </nav>
+        </div>
+
+        <div class="container mt-5">
+            <div class="card">
+              <div class="card-body">
+                <h2 class="card-title mb-4">Confirmar Exclusão</h2>
+
+                <div class="d-flex align-items-center mb-4">
+                  <img src="{{ compra.produto.thumb.url }}" alt="{{ compra.produto.titulo }}" class="img-thumbnail" style="width: 100px; height: auto;" />
+                  <div class="ml-3">
+                    <h5>{{ compra.produto.titulo }}</h5>
+                    <p>Data da Compra: {{ compra.data_compra|date:"F d, Y" }}</p>
+                    <p>Endereço de Entrega: {{ compra.endereco_entrega }}</p>
+                    <p>Forma de Pagamento: {{ compra.forma_pagamento }}</p>
+                  </div>
+                </div>
+
+                <p class="card-text">Você tem certeza de que deseja excluir a compra de <strong>{{ compra.produto.titulo }}</strong>?</p>
+
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+                <script>
+                  function confirmarExclusao() {
+                    Swal.fire({
+                      title: 'Confirmar Exclusão',
+                      text: 'Você tem certeza de que deseja excluir a compra?',
+                      icon: 'warning',
+                      showCancelButton: true,
+                      confirmButtonColor: '#d33',
+                      cancelButtonColor: '#3085d6',
+                      confirmButtonText: 'Sim, excluir!',
+                      cancelButtonText: 'Cancelar'
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                        document.getElementById('form-exclusao').submit();
+                      }
+                    });
+                  }
+                </script>
+
+                <form method="post" action="" id="form-exclusao">
+                  {% csrf_token %}
+                  <button type="button" class="btn btn-danger" onclick="confirmarExclusao()">Confirmar Exclusão</button>
+                </form>
+
+                <a href="{% url 'minhas_compras' %}" class="btn btn-primary mt-3">Cancelar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+
+
+{% include 'commom/footer.html' %}
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="../static/lib/easing/easing.min.js"></script>
+<script src="../static/lib/owlcarousel/owl.carousel.min.js"></script>
+
+<!-- Contact Javascript File -->
+<script src="../static/mail/jqBootstrapValidation.min.js"></script>
+<script src="../static/mail/contact.js"></script>
+
+<!-- Template Javascript -->
+<script src="{% static 'js/main.js' %}"></script>
+<script>
+    var DJANGO_USER = "{{user.is_authenticated|yesno:"true,false"}};
+</script>
+</body>

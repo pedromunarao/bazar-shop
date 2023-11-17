@@ -32,43 +32,37 @@
 
     <link href="{% static 'css/style.css' %}" rel="stylesheet"></head>
 <body>
-    <div class="container mt-4">
-    <h2>Confirmar Compra</h2>
+    <!-- em seu template confirmar_compra.html -->
+{% include 'commom/topbar.html' %}
+{% include 'commom/messages.html' %}
 
-    <h3>Produto:</h3>
-    <div class="card mb-3" style="max-width: 540px;">
-      <div class="row no-gutters">
-        <div class="col-md-4">
-          <img src="{{ compra.produto.thumb.url }}" alt="{{ compra.produto.titulo }}" class="img-fluid">
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title">{{ compra.produto.titulo }}</h5>
-            <p class="card-text">{{ compra.produto.descricao }}</p>
-            <p class="card-text">Preço: R$ {{ compra.produto.preco }}</p>
+  <div class="container mt-5">
+    <div class="card">
+      <div class="card-body">
+        <h2 class="card-title mb-4">Compra</h2>
+
+        <div class="d-flex align-items-center mb-4">
+          <img src="{{ compra.produto.thumb.url }}" alt="{{ compra.produto.titulo }}" class="img-thumbnail" style="width: 100px; height: auto;" />
+          <div class="ml-3">
+            <h5>{{ compra.produto.titulo }}</h5>
+            <p>Preço: {{ compra.produto.preco }}</p>
           </div>
         </div>
+
+        <p class="card-text">Endereço de Entrega: {{ compra.endereco_entrega }}</p>
+        <p class="card-text">Forma de Pagamento: {{ compra.forma_pagamento }}</p>
+
+        <div class="alert alert-success mt-4" role="alert">
+          Sua compra foi efetuada com sucesso! Obrigado por comprar conosco.
+        </div>
+
+        <a href="{% url 'minhas_compras' %}" class="btn btn-primary">Ver Minhas Compras</a>
       </div>
     </div>
-
-    <form method="post">
-      {% csrf_token %}
-
-      <div class="form-group">
-        <label for="id_endereco_entrega">Endereço de Entrega:</label>
-        <input type="text" name="endereco_entrega" id="id_endereco_entrega" class="form-control" value="{{ compra.endereco_entrega }}">
-      </div>
-
-      <div class="form-group">
-        <label for="id_forma_pagamento">Forma de Pagamento:</label>
-        <input type="text" name="forma_pagamento" id="id_forma_pagamento" class="form-control" value="{{ compra.forma_pagamento }}">
-      </div>
-
-      <button type="submit" class="btn btn-success">Confirmar Compra</button>
-    </form>
   </div>
 
 
+{% include 'commom/footer.html' %}
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script src="../static/lib/easing/easing.min.js"></script>
