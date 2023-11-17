@@ -1,5 +1,5 @@
 from django import forms
-from .models import Produto
+from .models import Produto, Compra
 
 
 class ProdutoForm(forms.ModelForm):
@@ -16,3 +16,9 @@ class ProdutoForm(forms.ModelForm):
 
 class ProdutoSearchForm(forms.Form):
     termo_pesquisa = forms.CharField(label='Pesquisar Produto', max_length=100)
+
+
+class CompraForm(forms.ModelForm):
+    class Meta:
+        model = Compra
+        fields = ['endereco_entrega', 'forma_pagamento']

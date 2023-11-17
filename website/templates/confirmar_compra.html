@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+{% load static %}
+
+<head>
+    <meta charset="utf-8">
+    <title>Fashionize</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="{% static 'img/icon.ico' %}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+    <link rel=”stylesheet” href=”https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css”/>
+
+    <link rel=”stylesheet” href=”https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css”/>
+
+
+    <!-- Customized Bootstrap Stylesheet -->
+
+    <link href="{% static 'css/style.css' %}" rel="stylesheet"></head>
+<body>
+    <div class="container mt-4">
+    <h2>Confirmar Compra</h2>
+
+    <h3>Produto:</h3>
+    <div class="card mb-3" style="max-width: 540px;">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="{{ compra.produto.thumb.url }}" alt="{{ compra.produto.titulo }}" class="img-fluid">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{ compra.produto.titulo }}</h5>
+            <p class="card-text">{{ compra.produto.descricao }}</p>
+            <p class="card-text">Preço: R$ {{ compra.produto.preco }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <form method="post">
+      {% csrf_token %}
+
+      <div class="form-group">
+        <label for="id_endereco_entrega">Endereço de Entrega:</label>
+        <input type="text" name="endereco_entrega" id="id_endereco_entrega" class="form-control" value="{{ compra.endereco_entrega }}">
+      </div>
+
+      <div class="form-group">
+        <label for="id_forma_pagamento">Forma de Pagamento:</label>
+        <input type="text" name="forma_pagamento" id="id_forma_pagamento" class="form-control" value="{{ compra.forma_pagamento }}">
+      </div>
+
+      <button type="submit" class="btn btn-success">Confirmar Compra</button>
+    </form>
+  </div>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="../static/lib/easing/easing.min.js"></script>
+<script src="../static/lib/owlcarousel/owl.carousel.min.js"></script>
+
+<!-- Contact Javascript File -->
+<script src="../static/mail/jqBootstrapValidation.min.js"></script>
+<script src="../static/mail/contact.js"></script>
+
+<!-- Template Javascript -->
+<script src="{% static 'js/main.js' %}"></script>
+<script>
+    var DJANGO_USER = "{{user.is_authenticated|yesno:"true,false"}};
+</script>
+
+</body>
+</html>

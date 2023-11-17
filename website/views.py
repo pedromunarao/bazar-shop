@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, logout
 from django.contrib.auth import login as login_django
 from .models import Produto, Categoria, Compra
-from .forms import ProdutoForm, ProdutoSearchForm
+from .forms import ProdutoForm, ProdutoSearchForm, CompraForm
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from django.contrib import messages
@@ -130,5 +130,21 @@ def compra(request, pk):
         messages.success(request, "Compra realizada com sucesso!")
         return redirect('shop')
 
-    return render(request, 'checkout.html', {'produto': produto})
+    return render(request, 'shop.html', {'produto': produto})
+
+
+@login_required
+def confirmar_compra(request, pk):
+    compras = get_object_or_404(Compra, pk=pk)
+
+    if request.method == 'POST':
+        form = CompraForm(request.POST, instance=compras)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Compra realizada com sucesso!")
+            return redirect('shop')
+    else:
+        form = CompraForm(instance=compras)
+
+    return render(request, 'shop.html', {'compra': compras, 'form': form})
 
