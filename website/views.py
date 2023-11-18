@@ -77,7 +77,6 @@ def detail(request, pk):
     return render(request, 'detail.html', {'produto': detalhes})
 
 
-
 @login_required
 def cadastrar_produto(request):
     if request.method == 'POST':
@@ -100,11 +99,6 @@ def sair(request):
     logout(request)
     messages.warning(request, "Usuário deslogado")
     return HttpResponseRedirect('/')
-
-
-def compra(request, pk):
-    compras = get_object_or_404(Produto, pk=pk)
-    return render(request, 'checkout.html', {'produto': compras})
 
 
 def produtos_por_categoria(request, categoria_id):
@@ -143,10 +137,12 @@ def confirmar_compra(request, compra_id):
     compra = get_object_or_404(Compra, pk=compra_id)
     return render(request, 'confirmar_compra.html', {'compra': compra})
 
+
 @login_required
 def minhas_compras(request):
     compras = Compra.objects.filter(usuario=request.user)
     return render(request, 'minhas_compras.html', {'compras': compras})
+
 
 @login_required
 def excluir_compra(request, compra_id):
@@ -164,6 +160,7 @@ def pesquisar_produto(request):
     produtos = Produto.objects.filter(titulo__icontains=query)
     return render(request, 'pesquisar_produto.html', {'produtos': produtos, 'query': query})
 
+
 @login_required
 def excluir_produto(request, produto_id):
     produto = get_object_or_404(Produto, id=produto_id, usuario=request.user)
@@ -173,8 +170,8 @@ def excluir_produto(request, produto_id):
 
     return JsonResponse({'message': 'Produto excluído com sucesso'})
 
+
 @login_required
 def meus_produtos(request):
     produtos = Produto.objects.filter(usuario=request.user)
     return render(request, 'meus_produtos.html', {'produtos': produtos})
-

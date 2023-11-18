@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 {% load static %}
@@ -31,33 +30,21 @@
 
     <!-- Customized Bootstrap Stylesheet -->
 
-    <link href="{% static 'css/style.css' %}" rel="stylesheet"></head>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
 <body>
-      <div class="container mt-5">
-        <h2 class="mb-4">Comprar {{ produto.titulo }}</h2>
-        <form method="post" action="{% url 'comprar_produto' produto.pk %}" class="col-md-6">
-          {% csrf_token %}
-          {{ form.as_p }}
-          <button type="submit" class="btn btn-primary">Confirmar Compra</button>
-        </form>
-      </div>
+<div class="container mt-5">
+    <h2 class="mb-4">Comprar {{ produto.titulo }}</h2>
+    <form method="post" action="{% url 'comprar_produto' produto.pk %}" class="col-md-6">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Confirmar Compra</button>
+    </form>
+</div>
 
 
-      {% include 'commom/footer.html' %}
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-<script src="../static/lib/easing/easing.min.js"></script>
-<script src="../static/lib/owlcarousel/owl.carousel.min.js"></script>
-
-<!-- Contact Javascript File -->
-<script src="../static/mail/jqBootstrapValidation.min.js"></script>
-<script src="../static/mail/contact.js"></script>
-
-<!-- Template Javascript -->
-<script src="{% static 'js/main.js' %}"></script>
-<script>
-    var DJANGO_USER = "{{user.is_authenticated|yesno:"true,false"}};
-</script>
+{% include 'commom/footer.html' %}
+{% include 'commom/scripts.html' %}
 
 </body>
 </html>

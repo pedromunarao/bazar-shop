@@ -14,7 +14,8 @@
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -30,30 +31,32 @@
     <script src="assets/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
 
 </head>
-    <body>
-        {% csrf_token %}
+<body>
+{% csrf_token %}
 {% include 'commom/messages.html' %}
 
 <!-- Top bar -->
 {% include 'commom/topbar.html' %}
 <!-- Top bar End -->
-    <div class="container">
-        <form action="{% url 'login' %}" method="POST">{% csrf_token %}
-            <div class="form-group">
-                <label for="exampleInputEmail1">Usuário</label>
-                <input type="text" class="form-control" id="user" aria-describedby="userHelp" placeholder="Seu Usuário" name="username">
-            </div>
-              <div class="form-group">
-                <label for="exampleInputPassword1">Senha</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha" name="password">
-              </div>
-              <button type="submit" class="btn btn-primary">Logar</button>
-        </form>
-    </div>
-
+<div class="container">
+    <form action="{% url 'login' %}" method="POST">{% csrf_token %}
+        <div class="form-group">
+            <label for="exampleInputEmail1">Usuário</label>
+            <input type="text" class="form-control" id="user" aria-describedby="userHelp" placeholder="Seu Usuário"
+                   name="username">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Senha</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha" name="password">
+        </div>
+        <button type="submit" class="btn btn-primary">Logar</button>
+    </form>
+</div>
 
 
 {% include 'commom/footer.html' %}
+{% include 'commom/scripts.html' %}
 
-    </body>
+
+</body>
 </html>
