@@ -1,0 +1,1 @@
+web: gunicorn Fashionize.wsgi --log-file -
