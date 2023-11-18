@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'website',
     'bootstrap4',
     'tailwind',
+
 ]
 
 
@@ -57,6 +58,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 ROOT_URLCONF = 'djangoProject.urls'
 
