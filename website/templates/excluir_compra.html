@@ -56,7 +56,6 @@
                 </div>
             </nav>
         </div>
-
         <div class="container mt-5">
             <div class="card">
               <div class="card-body">
@@ -69,12 +68,28 @@
                     <p>Data da Compra: {{ compra.data_compra|date:"F d, Y" }}</p>
                     <p>Endereço de Entrega: {{ compra.endereco_entrega }}</p>
                     <p>Forma de Pagamento: {{ compra.forma_pagamento }}</p>
-                  </div>
-                </div>
 
                 <p class="card-text">Você tem certeza de que deseja excluir a compra de <strong>{{ compra.produto.titulo }}</strong>?</p>
 
-                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+                <form method="post" action="" id="form-exclusao">
+                  {% csrf_token %}
+                  <button type="button" class="btn btn-danger" onclick="confirmarExclusao()">Confirmar Exclusão</button>
+                </form>
+
+                <a href="{% url 'minhas_compras' %}" class="btn btn-primary mt-3">Cancelar</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+    </div>
+
+
+
+{% include 'commom/footer.html' %}
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
                 <script>
                   function confirmarExclusao() {
                     Swal.fire({
@@ -93,22 +108,6 @@
                     });
                   }
                 </script>
-
-                <form method="post" action="" id="form-exclusao">
-                  {% csrf_token %}
-                  <button type="button" class="btn btn-danger" onclick="confirmarExclusao()">Confirmar Exclusão</button>
-                </form>
-
-                <a href="{% url 'minhas_compras' %}" class="btn btn-primary mt-3">Cancelar</a>
-              </div>
-            </div>
-          </div>
-        </div>
-    </div>
-
-
-
-{% include 'commom/footer.html' %}
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
