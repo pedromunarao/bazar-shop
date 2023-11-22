@@ -19,5 +19,5 @@ urlpatterns = [
     path('excluir_compra/<int:compra_id>/', views.excluir_compra, name='excluir_compra'),
     path('pesquisar_produto/', views.pesquisar_produto, name='pesquisar_produto'),
     path('meus_produtos/', views.meus_produtos, name='meus_produtos'),
-    path('excluir_produto/<int:produto_id>/', views.excluir_produto, name='excluir_produto')
+    path('excluir_produto/<int:produto_id>/', views.excluir_produto, name='excluir_produto'),
 ]

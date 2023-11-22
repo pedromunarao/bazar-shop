@@ -175,3 +175,4 @@ def excluir_produto(request, produto_id):
 def meus_produtos(request):
     produtos = Produto.objects.filter(usuario=request.user)
     return render(request, 'meus_produtos.html', {'produtos': produtos})
+
